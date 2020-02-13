@@ -13,13 +13,13 @@ export default useRestaurants = () => {
                 params: {
                 term: term,
                 limit: 50,
-                location: "New York City"
+                location: "Stockholm"
                 
                 }});
             setRestaurants(response.data.businesses)
             //console.log(restaurants)
         }catch (error){
-            setErrorMessage("Something went wrong") 
+            setErrorMessage(error) 
         }
         
     }

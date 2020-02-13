@@ -24,7 +24,8 @@ const styles = {
         backgroundColor: "#DCDCDC",
         flexDirection: "row",
         margin: 15,
-        borderRadius: 10
+        borderRadius: 10,
+        marginBottom: 10
     },
     testInputStyle: {
         height: 50,
