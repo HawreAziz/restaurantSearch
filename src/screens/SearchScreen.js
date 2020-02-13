@@ -1,32 +1,16 @@
 import React, { useState } from "react";
 import { View, Text } from "react-native";
 import SearchBar from "../components/SearchBar";
-import yelp from "../api/yelp";
-import axios from "axios";
+import useRestaurants from "../hooks/useRestaurants";
+import RestaurantList from "../components/RestaurantList";
 
 const SearchScreen = () => {
     const [ term, setTerm ] = useState("");
-    const [ restaurants, setRestaurants ] = useState([]);
-    const [ errorMessage, setErrorMessage ] = useState("");
-
-    const searchRestaurants = async () => {
-        try{
-            console.log(term)
-            const response =  await yelp.get("/search", {
-                params: {
-                term: term,
-                limit: 50,
-                location: "New York City"
-                
-                }});
-            console.log(response);
-            setRestaurants(response.data.businesses)
-        }catch (error){
-            setErrorMessage("Something went wrong") 
-        }
-        
-    }
-
+    const [ searchRestaurants, restaurants, errorMessage ] = useRestaurants();
+    const costEffective = restaurants.filter( restaurant => {
+        return restaurant.price !== undefined && restaurant.price.length === 1
+    });
+    console.log(costEffective)
     return <View>
              <SearchBar 
                term={term} 
@@ -35,6 +19,9 @@ const SearchScreen = () => {
              />
              { errorMessage ? <Text>{errorMessage}</Text> : null }
              <Text>Found {restaurants.length} restaurants</Text>
+             <RestaurantList title="Cost effective" />
+             <RestaurantList title="Bit pricier" />
+             <RestaurantList title="Big spender" />
            </View>
 }
 
