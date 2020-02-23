@@ -19,7 +19,7 @@ const RestaurantDetail =  ({navigation}) => {
     if(!restaurantDetail){
         return null;
     }
-    console.log(restaurantDetail.name);
+    console.log(restaurantDetail);
 
     return (
         <>
