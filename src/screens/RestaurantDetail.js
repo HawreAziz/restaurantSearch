@@ -24,8 +24,8 @@ const RestaurantDetail =  ({navigation}) => {
     return (
         <>
           <Text style={styles.titleView} >{ restaurantDetail.name }</Text>
-          {restaurantDetail.location.display_address.map(addr_line => {
-              return <Text id={addr_line}>{addr_line}</Text>
+          { restaurantDetail.location.display_address.map(addr => {
+              <Text id={addr}>{addr}</Text>
           })}
           <FlatList
             data={restaurantDetail.photos}
